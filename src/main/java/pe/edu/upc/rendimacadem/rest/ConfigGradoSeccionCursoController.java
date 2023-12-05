@@ -119,4 +119,47 @@ public class ConfigGradoSeccionCursoController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
         }
     }
+
+    // crud Estudiante
+    private IEstudianteNegocio iEstudianteNegocio;
+    @GetMapping("/estudiantes")
+    public List<Estudiante> listaEstudiantes(){
+        return iEstudianteNegocio.listado();
+    }
+
+    @PostMapping("/estudiante")
+    public Estudiante registrarEstudiante(@RequestBody Estudiante obj){
+        return iEstudianteNegocio.registrar(obj);
+    }
+    @GetMapping("/estudiante/{codigo}")
+    public Estudiante buscarEstudiante(@PathVariable(value = "codigo")Long codigo){
+        try {
+            return iEstudianteNegocio.buscar(codigo);
+        } catch (Exception e) {
+            //Escribiendo en el log
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
+        }
+    }
+
+    // crud Docente
+    private IDocenteNegocio iDocenteNegocio;
+    @GetMapping("/docentes")
+    public List<Docente> listaDocentes(){
+        return iDocenteNegocio.listado();
+    }
+    @PostMapping("/docente")
+    public Docente registrarDocente(@RequestBody Docente obj){
+        return iDocenteNegocio.registrar(obj);
+    }
+    @GetMapping("/docente/{codigo}")
+    public Docente buscarDocente(@PathVariable(value = "codigo")Long codigo){
+        try {
+            return iDocenteNegocio.buscar(codigo);
+        } catch (Exception e) {
+            //Escribiendo en el log
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
+        }
+    }
 }
