@@ -1,6 +1,7 @@
 package pe.edu.upc.rendimacadem.negocio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.edu.upc.rendimacadem.entity.Curso;
 import pe.edu.upc.rendimacadem.entity.Docente;
 import pe.edu.upc.rendimacadem.repository.ICursoRepository;
@@ -8,6 +9,7 @@ import pe.edu.upc.rendimacadem.repository.IDocenteRepository;
 
 import java.util.List;
 
+@Service
 public class DocenteNegocio implements IDocenteNegocio{
 
     @Autowired
