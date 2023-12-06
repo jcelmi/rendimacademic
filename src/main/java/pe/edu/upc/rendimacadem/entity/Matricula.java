@@ -24,6 +24,6 @@ public class Matricula {
     @OneToOne()
     private GradoSeccionCurso gradoSeccionCurso;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Nota> calificaciones;
 }

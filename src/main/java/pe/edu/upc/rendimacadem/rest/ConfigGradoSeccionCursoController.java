@@ -20,6 +20,8 @@ public class ConfigGradoSeccionCursoController {
     // crud grado
     @Autowired
     private IGradoNegocio iGradoNegocio;
+    @Autowired
+    private INotaNegocio iNotaNegocio;
     Logger logger = LoggerFactory.getLogger(ConfigGradoSeccionCursoController.class);
     @GetMapping("/grados")
     public List<Grado> listaGrado(){
@@ -221,5 +223,41 @@ public class ConfigGradoSeccionCursoController {
             logger.error("Error critico en la aplicación: " + e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
         }
+    }
+
+    @PostMapping("matriculas/{matriculaCodigo}/calificaciones")
+    public Nota registrarNota(@PathVariable(value = "matriculaCodigo") Long matriculaCodigo, @RequestBody Nota obj) {
+        try {
+            return iNotaNegocio.registrar(matriculaCodigo, obj);
+        } catch (Exception e) {
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el código matrícula buscado", e);
+        }
+    }
+
+    @PostMapping("matriculas/{matriculaCodigo}/calificaciones/actualizar")
+    public Nota actualizarNota(@PathVariable(value = "matriculaCodigo") Long matriculaCodigo, @RequestBody Nota nota) {
+        try {
+            return iNotaNegocio.actualizar(matriculaCodigo, nota);
+        } catch (Exception e) {
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el código matrícula buscado", e);
+        }
+    }
+
+    @GetMapping("matriculas/calificaciones/{codigo}")
+    public Nota buscarNota(@PathVariable(value = "codigo") Long codigo){
+        try {
+            return iNotaNegocio.buscar(codigo);
+        } catch (Exception e) {
+            //Escribiendo en el log
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
+        }
+    }
+
+    @DeleteMapping("matriculas/calificaciones-del/{codigo}")
+    public void eliminarNota(@PathVariable(value = "codigo") Long codigo) {
+        iNotaNegocio.eliminar(codigo);
     }
 }
