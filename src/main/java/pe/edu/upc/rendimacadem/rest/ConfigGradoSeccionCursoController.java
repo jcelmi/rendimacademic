@@ -2,7 +2,6 @@ package pe.edu.upc.rendimacadem.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,7 +15,6 @@ import java.util.List;
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class ConfigGradoSeccionCursoController {
     // crud grado
-    @Autowired
     private IGradoNegocio iGradoNegocio;
     Logger logger = LoggerFactory.getLogger(ConfigGradoSeccionCursoController.class);
     @GetMapping("/grados")
@@ -39,7 +37,6 @@ public class ConfigGradoSeccionCursoController {
     }
 
     // crud seccion
-    @Autowired
     private ISeccionNegocio iSeccionNegocio;
     @GetMapping("/seciciones")
     public List<Seccion> ListaSeccion(){
@@ -61,7 +58,6 @@ public class ConfigGradoSeccionCursoController {
     }
 
     // crud curso
-    @Autowired
     private ICursoNegocio iCursoNegocio;
     @GetMapping("/cursos")
     public List<Curso> listaCurso(){
@@ -83,7 +79,6 @@ public class ConfigGradoSeccionCursoController {
     }
 
     // crud GradoSeccion
-    @Autowired
     private IGradoSeccionNegocio iGradoSeccionNegocio;
     @GetMapping("/gradosecciones")
     public List<GradoSeccion> listaGradoSeccion(){
@@ -105,7 +100,6 @@ public class ConfigGradoSeccionCursoController {
     }
 
     // crud GradoSeccionCurso
-    @Autowired
     private IGradoSeccionCursoNegocio iGradoSeccionCursoNegocio;
     @GetMapping("/gradoseccioncursos")
     public List<GradoSeccionCurso> listaGradoSeccionCurso(){
