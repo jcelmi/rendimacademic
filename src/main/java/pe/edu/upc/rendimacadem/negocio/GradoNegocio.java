@@ -20,11 +20,15 @@ public class GradoNegocio implements IGradoNegocio{
     public Grado buscar(Long codigo) throws Exception {
         return iGradoRepository.findById(codigo).orElseThrow(
             () ->new Exception("No se encontró con el código ingresado"));
-
     }
 
     @Override
     public List<Grado> listado() {
         return iGradoRepository.findAll();
+    }
+
+    @Override
+    public void eliminar(Long codigo) {
+        iGradoRepository.deleteById(codigo);
     }
 }

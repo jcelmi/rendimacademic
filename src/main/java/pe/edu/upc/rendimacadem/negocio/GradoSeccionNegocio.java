@@ -22,9 +22,11 @@ public class GradoSeccionNegocio implements IGradoSeccionNegocio{
             () ->new Exception("No se encontró con el código ingresado"));
 
     }
-
     @Override
     public List<GradoSeccion> listado() {
         return iGradoSeccionRepository.findAll();
+    }
+    public void eliminar(Long codigo) {
+        iGradoSeccionRepository.deleteById(codigo);
     }
 }

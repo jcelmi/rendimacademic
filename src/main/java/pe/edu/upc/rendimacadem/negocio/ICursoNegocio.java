@@ -8,4 +8,5 @@ public interface ICursoNegocio {
     public Curso registrar(Curso curso);
     public Curso buscar(Long codigo) throws Exception;
     public List<Curso> listado();
+    public void eliminar(Long codigo);
 }

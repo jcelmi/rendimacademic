@@ -36,6 +36,11 @@ public class ConfigGradoSeccionCursoController {
         }
     }
 
+    @DeleteMapping("/grado-del/{codigo}")
+    public void eliminarGrado(@PathVariable(value = "codigo")Long codigo){
+        iGradoNegocio.eliminar(codigo);
+    }
+
     // crud seccion
     private ISeccionNegocio iSeccionNegocio;
     @GetMapping("/seciciones")
@@ -55,6 +60,11 @@ public class ConfigGradoSeccionCursoController {
             logger.error("Error critico en la aplicación: " + e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
         }
+    }
+
+    @DeleteMapping("/seccion-del/{codigo}")
+    public void eliminarSeccion(@PathVariable(value = "codigo")Long codigo){
+        iSeccionNegocio.eliminar(codigo);
     }
 
     // crud curso
@@ -78,6 +88,11 @@ public class ConfigGradoSeccionCursoController {
         }
     }
 
+    @DeleteMapping("/curso-del/{codigo}")
+    public void eliminarCurso(@PathVariable(value = "codigo")Long codigo){
+        iCursoNegocio.eliminar(codigo);
+    }
+
     // crud GradoSeccion
     private IGradoSeccionNegocio iGradoSeccionNegocio;
     @GetMapping("/gradosecciones")
@@ -99,6 +114,11 @@ public class ConfigGradoSeccionCursoController {
         }
     }
 
+    @DeleteMapping("gradoseccion-del/{codigo}")
+    public void eliminarGradoSeccion(@PathVariable(value = "codigo")Long codigo){
+        iCursoNegocio.eliminar(codigo);
+    }
+
     // crud GradoSeccionCurso
     private IGradoSeccionCursoNegocio iGradoSeccionCursoNegocio;
     @GetMapping("/gradoseccioncursos")
@@ -118,5 +138,9 @@ public class ConfigGradoSeccionCursoController {
             logger.error("Error critico en la aplicación: " + e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
         }
+    }
+    @DeleteMapping("gradoseccioncurso-del/{codigo}")
+    public void eliminarGradoSeccionCurso(@PathVariable(value = "codigo")Long codigo){
+        iCursoNegocio.eliminar(codigo);
     }
 }

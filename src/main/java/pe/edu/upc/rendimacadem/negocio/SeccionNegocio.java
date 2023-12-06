@@ -27,4 +27,7 @@ public class SeccionNegocio implements ISeccionNegocio {
     public List<Seccion> listado() {
         return iSeccionRepository.findAll();
     }
+    public void eliminar(Long codigo) {
+        iSeccionRepository.deleteById(codigo);
+    }
 }

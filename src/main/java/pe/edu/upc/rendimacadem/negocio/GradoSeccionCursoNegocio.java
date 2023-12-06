@@ -27,4 +27,7 @@ public class GradoSeccionCursoNegocio implements IGradoSeccionCursoNegocio{
     public List<GradoSeccionCurso> listado() {
         return iGradoSeccionCursoRepository.findAll();
     }
+    public void eliminar(Long codigo) {
+        iGradoSeccionCursoRepository.deleteById(codigo);
+    }
 }

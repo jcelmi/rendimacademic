@@ -8,4 +8,5 @@ public interface ISeccionNegocio {
     public Seccion registrar(Seccion seccion);
     public Seccion buscar(Long seccion) throws Exception;
     public List<Seccion> listado();
+    public void eliminar(Long codigo);
 }

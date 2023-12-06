@@ -8,4 +8,5 @@ public interface IGradoSeccionNegocio {
     public GradoSeccion registrar(GradoSeccion regg);
     public GradoSeccion buscar(Long codigo) throws Exception;
     public List<GradoSeccion> listado();
+    public void eliminar(Long codigo);
 }

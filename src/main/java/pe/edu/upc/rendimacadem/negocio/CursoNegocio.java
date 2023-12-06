@@ -28,4 +28,7 @@ public class CursoNegocio implements ICursoNegocio{
     public List<Curso> listado() {
         return iCursoRepository.findAll();
     }
+    public void eliminar(Long codigo) {
+        iCursoRepository.deleteById(codigo);
+    }
 }
