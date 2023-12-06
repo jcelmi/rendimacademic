@@ -30,4 +30,8 @@ public class EstudianteNegocio implements IEstudianteNegocio{
     public List<Estudiante> listado() {
         return iEstudianteRepository.findAll();
     }
+
+    public void eliminar(Long codigo) {
+        iEstudianteRepository.deleteById(codigo);
+    }
 }

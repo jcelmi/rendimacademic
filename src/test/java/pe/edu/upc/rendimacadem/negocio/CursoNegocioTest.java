@@ -100,15 +100,4 @@ class CursoNegocioTest {
         Assertions.assertEquals(3, iCursoNegocio.listado().size());
     }
 
-    @Test
-    void testRegistrar() {
-    }
-
-    @Test
-    void testEliminar() {
-    }
-
-    @Test
-    void testListado() {
-    }
 }

@@ -31,4 +31,8 @@ public class DocenteNegocio implements IDocenteNegocio{
     public List<Docente> listado() {
         return iDocenteRepository.findAll();
     }
+
+    public void eliminar(Long codigo) {
+        iDocenteRepository.deleteById(codigo);
+    }
 }

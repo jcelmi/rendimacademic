@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/config")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 public class ConfigGradoSeccionCursoController {
     // crud grado
     @Autowired
@@ -148,5 +148,56 @@ public class ConfigGradoSeccionCursoController {
     @DeleteMapping("gradoseccioncurso-del/{codigo}")
     public void eliminarGradoSeccionCurso(@PathVariable(value = "codigo")Long codigo){
         iCursoNegocio.eliminar(codigo);
+    }
+
+    // crud Estudiantes
+    @Autowired
+    private IEstudianteNegocio iEstudianteNegocio;
+    @GetMapping("/estudiantes")
+    public List<Estudiante> listaEstudiantes(){
+        return iEstudianteNegocio.listado();
+    }
+    @PostMapping("/estudiante")
+    public Estudiante registrarEstudiante(@RequestBody Estudiante obj){
+        return iEstudianteNegocio.registrar(obj);
+    }
+    @GetMapping("/estudiante/{codigo}")
+    public Estudiante buscarEstudiante(@PathVariable(value = "codigo")Long codigo){
+        try {
+            return iEstudianteNegocio.buscar(codigo);
+        } catch (Exception e) {
+            //Escribiendo en el log
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
+        }
+    }
+    @DeleteMapping("estudiante-del/{codigo}")
+    public void eliminarEstudiante(@PathVariable(value = "codigo")Long codigo){
+        iEstudianteNegocio.eliminar(codigo);
+    }
+    // crud Docentes
+    @Autowired
+    private IDocenteNegocio iDocentesNegocio;
+    @GetMapping("/docentes")
+    public List<Docente> listaDocentes(){
+        return iDocentesNegocio.listado();
+    }
+    @PostMapping("/docente")
+    public Docente registrarDocente(@RequestBody Docente obj){
+        return iDocentesNegocio.registrar(obj);
+    }
+    @GetMapping("/docente/{codigo}")
+    public Docente buscarDocente(@PathVariable(value = "codigo")Long codigo){
+        try {
+            return iDocentesNegocio.buscar(codigo);
+        } catch (Exception e) {
+            //Escribiendo en el log
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
+        }
+    }
+    @DeleteMapping("docente-del/{codigo}")
+    public void eliminarDocente(@PathVariable(value = "codigo")Long codigo){
+        iDocentesNegocio.eliminar(codigo);
     }
 }
