@@ -15,6 +15,8 @@ import java.util.List;
 @RequestMapping("/config")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 public class ConfigGradoSeccionCursoController {
+    @Autowired
+    private IMatriculaNegocio iMatriculaNegocio;
     // crud grado
     @Autowired
     private IGradoNegocio iGradoNegocio;
@@ -197,7 +199,27 @@ public class ConfigGradoSeccionCursoController {
         }
     }
     @DeleteMapping("docente-del/{codigo}")
-    public void eliminarDocente(@PathVariable(value = "codigo")Long codigo){
+    public void eliminarDocente(@PathVariable(value = "codigo")Long codigo) {
         iDocentesNegocio.eliminar(codigo);
+    }
+
+    @GetMapping("/gradoseccioncurso/{codigo}/matriculas")
+    public List<Matricula> listMatriculas(@PathVariable(value = "codigo")Long codigo){
+        try {
+            return iMatriculaNegocio.buscarPorGradoSeccionCurso(codigo);
+        } catch (Exception e) {
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
+        }
+    }
+
+    @GetMapping("/matriculas/{codigo}/calificaciones")
+    public List<Nota> getMatriculaNotas(@PathVariable(value = "codigo") Long codigo){
+        try {
+            return iMatriculaNegocio.buscar(codigo).getCalificaciones();
+        } catch (Exception e) {
+            logger.error("Error critico en la aplicación: " + e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe el registro con el codigo buscado", e);
+        }
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Entity
 @Table(name="gradoseccioncurso")
@@ -19,5 +20,7 @@ public class GradoSeccionCurso {
     private Long idCurso;
     private Long idDocente;
     private int annio;
+    @OneToMany()
+    private List<Matricula> matriculas;
 
 }
